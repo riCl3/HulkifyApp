@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208506254857",
+    "project_id": "hulkifyfinalapp",
+    "storage_bucket": "hulkifyfinalapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208506254857:android:e4818ad93cc8b29c492ad8",
+        "android_client_info": {
+          "package_name": "com.example.hulkify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjYnC9xAbklEthgqJ8dtn6cvRzCr5I75g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
