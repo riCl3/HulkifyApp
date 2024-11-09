@@ -5,7 +5,7 @@ class MinimizedPlayer extends StatelessWidget {
   final String artistName;
   final VoidCallback onTap;
 
-  const MinimizedPlayer({required this.songTitle, required this.artistName, required this.onTap});
+  const MinimizedPlayer({super.key, required this.songTitle, required this.artistName, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

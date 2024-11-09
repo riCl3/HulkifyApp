@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
+import 'models/mood_category.dart';
 import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
@@ -8,7 +9,9 @@ import 'screens/home_screen.dart';
 import 'screens/search_screen.dart';
 import 'screens/library_screen.dart';
 import 'screens/settings_screen.dart';
-import 'screens/profile_screen.dart';  // Add this import for profile screen
+import 'screens/profile_screen.dart';
+import 'screens/song_player_screen.dart'; // Import for song player screen
+import 'screens/category_songs_screen.dart'; // Import for category songs screen
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +36,7 @@ class HulkifyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
         '/': (context) => SplashScreen(),
         '/login': (context) => LoginScreen(),
@@ -42,7 +45,9 @@ class HulkifyApp extends StatelessWidget {
         '/search': (context) => SearchScreen(),
         '/library': (context) => LibraryScreen(),
         '/settings': (context) => SettingsScreen(),
-        '/profile': (context) => ProfileScreen(),  // Add route for ProfileScreen
+        '/profile': (context) => ProfileScreen(),
+        '/songPlayer': (context) => SongPlayerScreen(title: '', artist: ''),
+        '/categorySongs': (context) => CategorySongsScreen(category: MoodCategory(title: '', songs: [])), // Add a default category here
       },
     );
   }
