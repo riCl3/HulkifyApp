@@ -58,9 +58,39 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text("Search", style: TextStyle(color: Colors.white)),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0), // Increase AppBar height
+        child: Stack(
+          children: [
+            AppBar(
+              backgroundColor: Colors.black,
+              elevation: 0,
+            ),
+            Positioned(
+              left: 10, // Move the content left further
+              top: 30,  // Move it further down from the top
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.account_circle, color: Colors.white, size: 35),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    "Search",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'sans-serif',
+                      fontSize: 30,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

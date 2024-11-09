@@ -7,7 +7,8 @@ import 'screens/signup_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/search_screen.dart';
 import 'screens/library_screen.dart';
-import 'screens/settings_screen.dart';  // Add this import
+import 'screens/settings_screen.dart';
+import 'screens/profile_screen.dart';  // Add this import for profile screen
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +41,8 @@ class HulkifyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/search': (context) => SearchScreen(),
         '/library': (context) => LibraryScreen(),
-        '/settings': (context) => SettingsScreen(),  // Add this route
+        '/settings': (context) => SettingsScreen(),
+        '/profile': (context) => ProfileScreen(),  // Add route for ProfileScreen
       },
     );
   }
