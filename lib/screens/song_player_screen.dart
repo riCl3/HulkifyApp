@@ -283,7 +283,7 @@ class _SongPlayerScreenState extends State<SongPlayerScreen> {
                   color: Colors.grey[800],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Center(
+                child: const Center(
                   child: Icon(Icons.music_note, color: Colors.white, size: 100),
                 ),
               ),
@@ -306,15 +306,15 @@ class _SongPlayerScreenState extends State<SongPlayerScreen> {
                 children: [
                   Text(
                     _currentTime,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   Text(
                     "${(_songLength / 60).toStringAsFixed(0)}:00",
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ],
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               // Control Buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -360,3 +360,5 @@ class _SongPlayerScreenState extends State<SongPlayerScreen> {
     );
   }
 }
+
+//Proper Code

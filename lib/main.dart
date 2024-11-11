@@ -36,7 +36,8 @@ class HulkifyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      initialRoute: '/home',
+      // Change initialRoute to '/' to load the SplashScreen first
+      initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
         '/login': (context) => LoginScreen(),
@@ -47,8 +48,11 @@ class HulkifyApp extends StatelessWidget {
         '/settings': (context) => SettingsScreen(),
         '/profile': (context) => ProfileScreen(),
         '/songPlayer': (context) => SongPlayerScreen(title: '', artist: ''),
-        '/categorySongs': (context) => CategorySongsScreen(category: MoodCategory(title: '', songs: [])), // Add a default category here
+        '/categorySongs': (context) => CategorySongsScreen(category: MoodCategory(title: '', songs: [])),
       },
     );
   }
 }
+
+
+//Proper Code

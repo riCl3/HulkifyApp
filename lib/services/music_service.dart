@@ -33,3 +33,6 @@ class MusicService extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+
+//Proper Code

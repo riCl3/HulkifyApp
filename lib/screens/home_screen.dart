@@ -1,10 +1,10 @@
-import 'dart:math'; // For random order
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../widgets/song_card.dart';
 import '../widgets/custom_bottom_navigation_bar.dart';
 import '../widgets/minimized_player.dart';
 import 'song_player_screen.dart';
-import '../models/mood_category.dart'; // Import MoodCategory model
+import '../models/mood_category.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,56 +16,14 @@ class _HomeScreenState extends State<HomeScreen> {
   String? _minimizedArtistName;
 
   final List<MoodCategory> moodCategories = [
-    MoodCategory(
-      title: 'Romantic',
-      songs: [
-        {'title': 'Love Story', 'artist': 'Taylor Swift'},
-        {'title': 'Perfect', 'artist': 'Ed Sheeran'},
-        {'title': 'All of Me', 'artist': 'John Legend'},
-        {'title': 'I Will Always Love You', 'artist': 'Whitney Houston'},
-        {'title': 'Just the Way You Are', 'artist': 'Bruno Mars'},
-      ],
-    ),
-    MoodCategory(
-      title: 'Workout',
-      songs: [
-        {'title': 'Eye of the Tiger', 'artist': 'Survivor'},
-        {'title': 'Stronger', 'artist': 'Kanye West'},
-        {'title': 'Lose Yourself', 'artist': 'Eminem'},
-        {'title': 'Uptown Funk', 'artist': 'Mark Ronson ft. Bruno Mars'},
-        {'title': 'Can’t Hold Us', 'artist': 'Macklemore & Ryan Lewis'},
-      ],
-    ),
-    MoodCategory(
-      title: 'Chill',
-      songs: [
-        {'title': 'Weightless', 'artist': 'Marconi Union'},
-        {'title': 'Sunset Lover', 'artist': 'Petit Biscuit'},
-        {'title': 'Night Owl', 'artist': 'Galimatias'},
-        {'title': 'Cold Little Heart', 'artist': 'Michael Kiwanuka'},
-        {'title': 'Lost in Japan', 'artist': 'Shawn Mendes'},
-      ],
-    ),
-    MoodCategory(
-      title: 'Sleepy',
-      songs: [
-        {'title': 'Goodbye Stranger', 'artist': 'Supertramp'},
-        {'title': 'Sleepyhead', 'artist': 'Passion Pit'},
-        {'title': 'Banana Pancakes', 'artist': 'Jack Johnson'},
-        {'title': 'Don’t Dream It’s Over', 'artist': 'Crowded House'},
-        {'title': 'Lullaby', 'artist': 'Sia'},
-      ],
-    ),
-    MoodCategory(
-      title: 'Breakup',
-      songs: [
-        {'title': 'Someone Like You', 'artist': 'Adele'},
-        {'title': 'Tears Dry On Their Own', 'artist': 'Amy Winehouse'},
-        {'title': 'Back to December', 'artist': 'Taylor Swift'},
-        {'title': 'We Are Never Ever Getting Back Together', 'artist': 'Taylor Swift'},
-        {'title': 'Irreplaceable', 'artist': 'Beyoncé'},
-      ],
-    ),
+    MoodCategory(title: 'Romantic', songs: [
+      {'title': 'Love Story', 'artist': 'Taylor Swift'},
+      {'title': 'Perfect', 'artist': 'Ed Sheeran'},
+    ]),
+    MoodCategory(title: 'Workout', songs: [
+      {'title': 'Eye of the Tiger', 'artist': 'Survivor'},
+      {'title': 'Stronger', 'artist': 'Kanye West'},
+    ]),
   ];
 
   final List<String> defaultCategories = [
@@ -75,7 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
     'Avenge Now!',
   ];
 
-  // Function to navigate to the SongPlayerScreen with the title and artist
+  final List<List<Color>> gradients = [
+    [Colors.purple, Colors.pinkAccent],
+    [Colors.blue, Colors.lightBlueAccent],
+    [Colors.green, Colors.lightGreenAccent],
+    [Colors.orange, Colors.deepOrangeAccent],
+  ];
+
   void _openSongPlayer(String title, String artist) {
     Navigator.push(
       context,
@@ -90,13 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  // Function to randomize the category order
   List<dynamic> _getRandomizedCategories() {
     List<dynamic> categories = [
       ...defaultCategories,
       ...moodCategories,
     ];
-    categories.shuffle(); // Shuffle to randomize order
+    categories.shuffle();
     return categories;
   }
 
@@ -115,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Category grid section
             Flexible(
               flex: 2,
               child: GridView.count(
@@ -135,17 +98,36 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(height: 10),
-            // Song list section
+            Text(
+              "Recommended Songs",
+              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             Flexible(
               flex: 3,
-              child: ListView(
-                children: [
-                  _buildSongCard('Song 1', 'Artist 1'),
-                  _buildSongCard('Song 2', 'Artist 2'),
-                  _buildSongCard('Song 3', 'Artist 3'),
-                  _buildSongCard('Song 4', 'Artist 4'),
-                  _buildSongCard('Song 5', 'Artist 5'),
-                ],
+              child: ListView.builder(
+                itemCount: 3,
+                itemBuilder: (context, rowIndex) {
+                  return SizedBox(
+                    height: 150,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 8,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => _openSongPlayer('Song ${index + 1}', 'Artist ${index + 1}'),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SongCard(
+                              title: 'Song ${index + 1}',
+                              artist: 'Artist ${index + 1}',
+                              gradientColors: gradients[index % gradients.length],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ),
           ],
@@ -170,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildCategoryTile(String title) {
     return GestureDetector(
-      onTap: () {}, // Add category functionality here
+      onTap: () {},
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey[850],
@@ -187,18 +169,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildMoodCategoryTile(MoodCategory category) {
-    // Define colors for each mood category
     Map<String, List<Color>> moodColors = {
       'Romantic': [Colors.pink.shade700, Colors.pink.shade400],
       'Workout': [Colors.orange.shade700, Colors.orange.shade400],
-      'Chill': [Colors.blue.shade700, Colors.blue.shade400],
-      'Sleepy': [Colors.purple.shade700, Colors.purple.shade400],
-      'Breakup': [Colors.red.shade700, Colors.red.shade400],
     };
 
     return GestureDetector(
       onTap: () {
-        // Handle category tap here
         print(category.title);
       },
       child: Container(
@@ -226,14 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Widget _buildSongCard(String title, String artist) {
-    return GestureDetector(
-      onTap: () => _openSongPlayer(title, artist),
-      child: SongCard(
-        title: title,
-        artist: artist,
-      ),
-    );
-  }
 }
+
+
+//Proper Code

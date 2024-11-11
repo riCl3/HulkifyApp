@@ -48,3 +48,5 @@ class SongControls extends StatelessWidget {
     );
   }
 }
+
+//Proper Code
