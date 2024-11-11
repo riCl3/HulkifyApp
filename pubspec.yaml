@@ -93,3 +93,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+    - assets/hulk.png
+    - assets/ironman.png
+    - assets/captain_america.png
+    - assets/thor.png
+    - assets/scarlet_witch.png
+    # Add any other images you use
